@@ -1,59 +1,48 @@
 'use client';
 
 import { useState } from 'react';
-import type { Team } from '@/components/sections/registration-form';
+import type { Player } from '@/components/sections/registration-form';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import Hero from '@/components/sections/hero';
 import Countdown from '@/components/sections/countdown';
 import RulesAndSchedule from '@/components/sections/rules-and-schedule';
 import RegistrationForm from '@/components/sections/registration-form';
-import TeamList from '@/components/sections/team-list';
+import PlayerList from '@/components/sections/player-list';
 
-const initialTeams: Team[] = [
+const initialPlayers: Player[] = [
   {
-    teamName: 'Apex Predators',
-    captainName: 'Ghost',
-    captainEmail: 'ghost@example.com',
-    captainId: 'GHOST#1234',
-    member2Id: 'SOAP#5512',
-    member3Id: 'ROACH#891',
-    member4Id: 'PRICE#007',
+    playerName: 'Ghost',
+    playerEmail: 'ghost@example.com',
+    playerId: 'GHOST#1234',
   },
   {
-    teamName: 'Tower Sentinels',
-    captainName: 'Rook',
-    captainEmail: 'rook@example.com',
-    captainId: 'ROOK#5678',
-    member2Id: 'MUTE#343',
-    member3Id: 'SLEDGE#998',
-    member4Id: 'THATCHER#112',
+    playerName: 'Rook',
+    playerEmail: 'rook@example.com',
+    playerId: 'ROOK#5678',
   },
   {
-    teamName: 'Void Strikers',
-    captainName: 'Viper',
-    captainEmail: 'viper@example.com',
-    captainId: 'VIPER#9012',
-    member2Id: 'OMEN#1337',
-    member3Id: 'CYPHER#404',
-    member4Id: '',
+    playerName: 'Viper',
+    playerEmail: 'viper@example.com',
+    playerId: 'VIPER#9012',
   },
   {
-    teamName: 'Cyber Spectres',
-    captainName: 'Jett',
-    captainEmail: 'jett@example.com',
-    captainId: 'JETT#2049',
-    member2Id: '',
-    member3Id: '',
-    member4Id: '',
+    playerName: 'Jett',
+    playerEmail: 'jett@example.com',
+    playerId: 'JETT#2049',
+  },
+  {
+    playerName: 'Soap',
+    playerEmail: 'soap@example.com',
+    playerId: 'SOAP#5512',
   },
 ];
 
 export default function Home() {
-  const [teams, setTeams] = useState<Team[]>(initialTeams);
+  const [players, setPlayers] = useState<Player[]>(initialPlayers);
 
-  const handleTeamRegistered = (newTeam: Team) => {
-    setTeams((prevTeams) => [...prevTeams, newTeam]);
+  const handlePlayerRegistered = (newPlayer: Player) => {
+    setPlayers((prevPlayers) => [...prevPlayers, newPlayer]);
   };
 
   // Set tournament date a few weeks in the future
@@ -73,11 +62,11 @@ export default function Home() {
               <RulesAndSchedule />
             </div>
             <div className="lg:col-span-2">
-              <RegistrationForm onTeamRegistered={handleTeamRegistered} />
+              <RegistrationForm onPlayerRegistered={handlePlayerRegistered} />
             </div>
           </div>
         </div>
-        <TeamList teams={teams} />
+        <PlayerList players={players} />
       </main>
       <Footer />
     </div>

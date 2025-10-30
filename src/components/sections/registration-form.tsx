@@ -26,41 +26,33 @@ import { useToast } from '@/hooks/use-toast';
 import { CheckCircle } from 'lucide-react';
 
 const formSchema = z.object({
-  teamName: z.string().min(3, 'Team name must be at least 3 characters.'),
-  captainName: z.string().min(2, "Captain's name is required."),
-  captainEmail: z.string().email('Please enter a valid email.'),
-  captainId: z.string().min(3, "Captain's player ID is required."),
-  member2Id: z.string().optional(),
-  member3Id: z.string().optional(),
-  member4Id: z.string().optional(),
+  playerName: z.string().min(2, 'Player name must be at least 2 characters.'),
+  playerEmail: z.string().email('Please enter a valid email.'),
+  playerId: z.string().min(3, 'Player ID is required.'),
 });
 
-export type Team = z.infer<typeof formSchema>;
+export type Player = z.infer<typeof formSchema>;
 
 export default function RegistrationForm({
-  onTeamRegistered,
+  onPlayerRegistered,
 }: {
-  onTeamRegistered: (team: Team) => void;
+  onPlayerRegistered: (player: Player) => void;
 }) {
   const { toast } = useToast();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const form = useForm<Team>({
+  const form = useForm<Player>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      teamName: '',
-      captainName: '',
-      captainEmail: '',
-      captainId: '',
-      member2Id: '',
-      member3Id: '',
-      member4Id: '',
+      playerName: '',
+      playerEmail: '',
+      playerId: '',
     },
   });
 
-  function onSubmit(values: Team) {
+  function onSubmit(values: Player) {
     try {
-      onTeamRegistered(values);
+      onPlayerRegistered(values);
       setIsSubmitted(true);
       form.reset();
       setTimeout(() => setIsSubmitted(false), 5000); // Reset after 5 seconds
@@ -69,7 +61,7 @@ export default function RegistrationForm({
         variant: 'destructive',
         title: 'Registration Failed',
         description:
-          'Could not register your team. Please try again later.',
+          'Could not register you. Please try again later.',
       });
     }
   }
@@ -78,10 +70,10 @@ export default function RegistrationForm({
     <Card className="border-primary/50 border-2 shadow-lg shadow-primary/10">
       <CardHeader>
         <CardTitle className="font-headline text-2xl text-primary">
-          Register Your Team
+          Register as a Player
         </CardTitle>
         <CardDescription>
-          Secure your spot in the Tower Scramble Showdown. One registration per team.
+          Secure your spot in the Tower Scramble Showdown.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -89,51 +81,36 @@ export default function RegistrationForm({
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
-              name="teamName"
+              name="playerName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Team Name</FormLabel>
+                  <FormLabel>Player Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g., Apex Predators" {...field} />
+                    <Input placeholder="Your Name" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormField
-                control={form.control}
-                name="captainName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Captain's Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Your Name" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="captainEmail"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Captain's Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="your.email@example.com" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+            <FormField
+              control={form.control}
+              name="playerEmail"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="your.email@example.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
              <FormField
                 control={form.control}
-                name="captainId"
+                name="playerId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Captain's Player ID</FormLabel>
+                    <FormLabel>Player ID</FormLabel>
                     <FormControl>
                       <Input placeholder="PlayerID#1234" {...field} />
                     </FormControl>
@@ -142,23 +119,14 @@ export default function RegistrationForm({
                   </FormItem>
                 )}
               />
-            <div className="space-y-2">
-                 <FormLabel>Team Members (Optional)</FormLabel>
-                 <FormDescription>Enter the Player IDs of your teammates.</FormDescription>
-                 <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-                    <FormField control={form.control} name="member2Id" render={({ field }) => (<FormItem><FormControl><Input placeholder="Member 2 ID" {...field} /></FormControl></FormItem>)} />
-                    <FormField control={form.control} name="member3Id" render={({ field }) => (<FormItem><FormControl><Input placeholder="Member 3 ID" {...field} /></FormControl></FormItem>)} />
-                    <FormField control={form.control} name="member4Id" render={({ field }) => (<FormItem><FormControl><Input placeholder="Member 4 ID" {...field} /></FormControl></FormItem>)} />
-                 </div>
-            </div>
-
+            
             <Button type="submit" className="w-full text-lg py-6 font-bold" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? 'Registering...' : 'Register Team'}
+              {form.formState.isSubmitting ? 'Registering...' : 'Register'}
             </Button>
             {isSubmitted && (
                 <div className="flex items-center justify-center gap-2 text-green-400 p-3 rounded-md bg-green-900/20 border border-green-400/30">
                     <CheckCircle className="h-5 w-5" />
-                    <p className="font-semibold">Team registered successfully!</p>
+                    <p className="font-semibold">You've been registered successfully!</p>
                 </div>
             )}
           </form>
