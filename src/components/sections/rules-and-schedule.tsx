@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
   Card,
   CardContent,
@@ -11,7 +12,7 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/components/ui/tabs';
-import { Gavel, CalendarDays, Swords, Shield, Users } from 'lucide-react';
+import { Gavel, CalendarDays, Swords, Shield, Users, MessageSquare } from 'lucide-react';
 
 const rules = [
     { icon: <Swords className="h-5 w-5 text-primary" />, title: 'Game Mode', description: '4v4 Tower Control on the "Ascension" custom map. First team to hold the central tower for 5 minutes cumulatively wins.' },
@@ -21,11 +22,12 @@ const rules = [
 ];
 
 const schedule = [
-    { time: '18:00 UTC', event: 'Tournament Begins - Round 1' },
-    { time: '19:00 UTC', event: 'Round 2' },
-    { time: '20:00 UTC', event: 'Semi-Finals' },
-    { time: '21:00 UTC', event: 'Grand Finals' },
-    { time: '22:00 UTC', event: 'Winner Announcement & Closing Ceremony' },
+    { time: '6:45 PM PST', event: 'All players join Discord voice channel', icon: <MessageSquare className="h-5 w-5 text-primary" /> },
+    { time: '7:00 PM PST', event: 'Tournament Begins - Round 1', icon: <Swords className="h-5 w-5 text-primary" /> },
+    { time: '8:00 PM PST', event: 'Round 2', icon: <Swords className="h-5 w-5 text-primary" /> },
+    { time: '9:00 PM PST', event: 'Semi-Finals', icon: <Swords className="h-5 w-5 text-primary" /> },
+    { time: '10:00 PM PST', event: 'Grand Finals', icon: <Swords className="h-5 w-5 text-primary" /> },
+    { time: '11:00 PM PST', event: 'Winner Announcement & Closing Ceremony', icon: <Users className="h-5 w-5 text-primary" /> },
 ];
 
 export default function RulesAndSchedule() {
@@ -63,9 +65,9 @@ export default function RulesAndSchedule() {
       <TabsContent value="schedule">
         <Card>
           <CardHeader>
-            <CardTitle className="font-headline">Event Schedule</CardTitle>
+            <CardTitle className="font-headline">Event Schedule - Saturday, Nov 8th</CardTitle>
             <CardDescription>
-              All times are in Coordinated Universal Time (UTC).
+              All times are in Pacific Standard Time (PST).
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -73,7 +75,9 @@ export default function RulesAndSchedule() {
               <div className="absolute left-0 top-0 h-full w-0.5 bg-border -translate-x-1/2 ml-3"></div>
               {schedule.map((item, index) => (
                 <div key={index} className="relative flex items-start pb-8">
-                  <div className="absolute left-0 top-1 h-5 w-5 bg-primary rounded-full border-4 border-background -translate-x-1/2 ml-3"></div>
+                  <div className="absolute left-0 top-1 h-5 w-5 bg-primary rounded-full border-4 border-background -translate-x-1/2 ml-3 flex items-center justify-center">
+                    {item.icon && React.cloneElement(item.icon, {className: "h-3 w-3 text-primary-foreground"})}
+                  </div>
                   <div className="pl-8">
                     <p className="font-mono text-sm text-primary">{item.time}</p>
                     <h4 className="font-semibold">{item.event}</h4>

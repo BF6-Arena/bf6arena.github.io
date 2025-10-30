@@ -45,17 +45,15 @@ export default function Home() {
     setPlayers((prevPlayers) => [...prevPlayers, newPlayer]);
   };
 
-  // Set tournament date a few weeks in the future
-  const tournamentDate = new Date();
-  tournamentDate.setDate(tournamentDate.getDate() + 21);
-  tournamentDate.setHours(18, 0, 0, 0);
+  // Set tournament date to Saturday, November 8th at 7:00 PM PST
+  const tournamentDate = "2025-11-08T19:00:00-08:00";
 
   return (
     <div className="flex min-h-dvh flex-col bg-background text-foreground">
       <Header />
       <main className="flex-1">
         <Hero />
-        <Countdown tournamentDate={tournamentDate.toISOString()} />
+        <Countdown tournamentDate={tournamentDate} />
         <div id="register" className="container mx-auto px-4 py-12 md:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
             <div className="lg:col-span-3">
