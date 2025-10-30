@@ -1,3 +1,22 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-1",
+      "description": "A squad of futuristic soldiers preparing for battle.",
+      "imageUrl": "https://images.unsplash.com/photo-1603459404909-2ce99c16ab54?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZnV0dXJpc3RpYyUyMHNvbGRpZXJzfGVufDB8fHx8MTc2MTc3NzgwMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "futuristic soldiers"
+    },
+    {
+      "id": "hero-2",
+      "description": "An imposing futuristic tower in a battlefield setting.",
+      "imageUrl": "https://images.unsplash.com/photo-1717024315779-6db76cfd6030?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxiYXR0bGVmaWVsZCUyMHRvd2VyfGVufDB8fHx8MTc2MTg1MTk5NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "battlefield tower"
+    },
+    {
+      "id": "hero-3",
+      "description": "Intense sci-fi warfare scene with explosions and laser fire.",
+      "imageUrl": "https://images.unsplash.com/photo-1718453909001-ba0201603860?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzY2ktZmklMjB3YXJmYXJlfGVufDB8fHx8MTc2MTg1MTk5NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sci-fi warfare"
+    }
+  ]
 }
